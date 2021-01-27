@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <% @left.each do |article| %>
+        <div class="card mb-4" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= article.title %></h5>
+            <p class="card-text"><%= article.preview %></p>
+            <%= link_to "Ver Mas", article_path(article.id), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm">
+      <% @right.each do |article| %>
+        <div class="card mb-4" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= article.title %></h5>
+            <p class="card-text"><%= article.preview %></p>
+            <%= link_to "Ver Mas", article_path(article.id), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm">
+      <aside>
+        <ul>
+          <li>Cosas 1</li>
+          <li>Cosas 2</li>
+          <li>Cosas 3</li>
+          <li>Cosas 4</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+
+  <% if user_signed_in? %>
+    <%= link_to "Create New Article", new_article_path, class: "btn btn-primary mb-5" %>
+  <% end %>
+</div>
+
+

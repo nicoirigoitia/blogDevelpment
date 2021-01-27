@@ -1,0 +1,76 @@
+<div class="container">
+<div class="card mb-5">
+  <div class="card-header">
+    <h3><%= @article.title %></h3>
+  </div>
+      <div class="card-body">
+        <div class="container-lg">
+          <p class="mb-5"><%= @article.content %></p>  
+
+          <%= link_to "Back", root_path, class: "btn btn-primary" %>
+
+          <%= link_to "Edit", edit_article_path(@article.id), class: "btn btn-primary" %>
+
+          <%= link_to "Delete", article_path(@article.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="container">
+<div class="card mb-5">
+  <div class="card-header">
+    <h2>Comments</h2>
+  </div>
+      <div class="card-body">
+        <div class="container-lg">
+          <p>
+            <% @article.comments.each do |comment| %>
+              <p>
+                <strong>Commenter:</strong>
+                <%= comment.commenter %>
+              </p>
+
+              <p>
+                <strong>Comment:</strong>
+                <%= comment.body %>
+              </p>
+            <% end %>
+          </p>   
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="container">
+<div class="card mb-5">
+  <div class="card-header">
+    <h2>Add a comment:</h2>
+  </div>
+      <div class="card-body">
+        <div class="container-lg">
+          <p>
+            <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+            <div class="mb-3">
+              <p>
+                <%= form.label :commenter, class: "form-label" %><br>
+                <%= form.text_field :commenter, class: "form-control" %>
+                
+              </p>
+              <p>
+                <%= form.label :body, class: "form-label" %><br>
+                <%= form.text_area :body, class:"form-control" %>
+              </p>
+              <p>
+                <%= form.submit class: "btn btn-primary" %>
+              </p>
+            </div>
+          <% end %>
+          </p>   
+        </div>
+      </div>
+  </div>
+</div>
+
